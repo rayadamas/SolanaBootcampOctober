@@ -4,11 +4,14 @@
 // I AM NOT DONE
 
 fn main() {
-    call_this();
+    call_me(3);
 }
 
-fn call_this(num: u32) {
+// This is a function that takes a number as an argument and prints out "Loop now {number}" for each number in the range 0..num. The function is called from main().
+fn call_me(num: i32) {
     for i in 0..num {
-        println!("Loop now {}", i + 1);
+        println!("Loop! number {}", i + 1);
     }
 }
+
+

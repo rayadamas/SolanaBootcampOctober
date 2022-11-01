@@ -7,17 +7,33 @@
 // I AM NOT DONE
 
 fn main() {
-    let original_price = 51;
-    println!("Your sale price is {}", sale_price(original_price));
+    let mut price = 0;
+    let mut rustbucks = 0;
+    let mut discount = 0;
+    let mut final_price = 0;
+
+    price = 10;
+    rustbucks = 10;
+    discount = calculate_discount(price, rustbucks);
+    final_price = price - discount;
+    println!("The final price is {}", final_price);
+
+    price = 11;
+    rustbucks = 10;
+    discount = calculate_discount(price, rustbucks);
+    final_price = price - discount;
+    println!("The final price is {}", final_price);
 }
 
-fn sale_price(price: i32) -> {
-    if is_even(price) {
-        price - 10
+fn calculate_discount(price: i32, rustbucks: i32) -> i32 {
+    if price % 2 == 0 {
+        rustbucks - 10
     } else {
-        price - 3
+        rustbucks - 3
     }
 }
+
+// I AM DONE
 
 fn is_even(num: i32) -> bool {
     num % 2 == 0
