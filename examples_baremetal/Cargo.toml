@@ -7,4 +7,6 @@
 members = [
 	"example1-helloworld/rust",
 	"example2-counter/rust",
+	"example2-counter/rust",
+	"example3-multifunc",
 ]
