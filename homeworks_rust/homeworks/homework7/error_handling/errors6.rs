@@ -10,17 +10,30 @@
 
 // I AM NOT DONE
 
-use std::num::ParseIntError;
+use std::error;
+// use std::num::ParseIntError;
+
+#[derive(Debug)]
+struct Purchase {
+    quantity: i32,
+    total_cost: i32,
+}
+
 
 // This is a custom error type that we will be using in `parse_pos_nonzero()`.
-#[derive(PartialEq, Debug)]
-enum ParsePosNonzeroError {
-    Creation(CreationError),
-    ParseInt(ParseIntError)
-}
+// #[derive(PartialEq, Debug)]
+// enum ParsePosNonzeroError {
+//     Creation(CreationError),
+//     ParseInt(ParseIntError)
+// }
+
+
 
 impl ParsePosNonzeroError {
     // TODO: add another error conversion function here.
+    fn from_creation_error(err: CreationError) -> ParsePosNonzeroError {
+        ParsePosNonzeroError::Creation(err)
+    }
 }
 
 fn parse_pos_nonzero(s: &str)
@@ -28,9 +41,18 @@ fn parse_pos_nonzero(s: &str)
 {
     // TODO: change this to return an appropriate error instead of panicking
     // when `parse()` returns an error.
-    let x: i64 = s.parse().unwrap();
-    PositiveNonzeroInteger::new(x)
-        .map_err(ParsePosNonzeroError::from_creation)
+    let x: i64 = s.parse().map_err(ParsePosNonzeroError::from_creation_error)?;
+    PositiveNonzeroInteger::new(x).map_err(ParsePosNonzeroError::from_creation_error)
+}
+
+fn total_cost(item_quantity: &str) -> Result<Purchase, ParsePosNonzeroError> {
+    let tokens_per_item = 5;
+    let processing_fee = 1;
+    let quantity = parse_pos_nonzero(item_quantity)?;
+    Ok(Purchase {
+        quantity: quantity.0 as i32,
+        total_cost: quantity.0 as i32 * tokens_per_item + processing_fee,
+    })
 }
 
 // Don't change anything below this line.

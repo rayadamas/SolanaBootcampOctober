@@ -12,8 +12,18 @@ fn main() {
         println!("Good morning!");
     }
 
-    let // Finish the rest of this line like the example! Or make it be false!
-    if is_evening {
-        println!("Good evening!");
-    }
+    // Characters (`char`)
+    let a = 'a';
+    let face = '😀';
+
+    // Tuples
+    let tup = (500, 6.4, 1);
+    let (x, y, z) = tup;
+    println!("The value of y is: {}", y);
+
+    // Arrays
+    let a = [1, 2, 3, 4, 5];
+    let first = a[0];
+    let second = a[1];
 }
+

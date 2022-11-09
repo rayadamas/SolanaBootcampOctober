@@ -8,15 +8,30 @@
 
 use std::error;
 use std::fmt;
-use std::num::ParseIntError;
+// use std::num::ParseIntError;
 
 // TODO: update the return type of `main()` to make this compile.
-fn main() -> Result<(), ParseIntError> {
-    let pretend_user_input = "42";
-    let x: i64 = pretend_user_input.parse()?;
-    println!("output={:?}", PositiveNonzeroInteger::new(x)?);
+fn main() -> Result<(), Box<dyn error::Error>> {
+    let mut tokens = 100;
+    let pretend_user_input = "8";
+
+    let cost = total_cost(pretend_user_input)?;
+
+    if cost > tokens {
+        println!("You can't afford that many!");
+    } else {
+        tokens -= cost;
+        println!("You now have {} tokens.", tokens);
+    }
     Ok(())
 }
+
+// fn main() -> Result<(), ParseIntError> {
+//     let pretend_user_input = "42";
+//     let x: i64 = pretend_user_input.parse()?;
+//     println!("output={:?}", PositiveNonzeroInteger::new(x)?);
+//     Ok(())
+// }
 
 // Don't change anything below this line.
 

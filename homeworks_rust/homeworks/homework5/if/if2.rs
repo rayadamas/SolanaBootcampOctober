@@ -6,12 +6,13 @@
 
 // I AM NOT DONE
 
-pub fn fizz_if_foo(fizzish: &str) -> &str {
-    if fizzish == "fizz" {
-        "foo"
-    } 
-    else {
-        1
+fn main() {
+    let number = 3;
+
+    if number < 5 {
+        println!("true");
+    } else {
+        println!("false");
     }
 }
 

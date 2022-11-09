@@ -3,27 +3,26 @@
 
 // I AM NOT DONE
 
-#[derive(PartialEq, Debug)]
-struct PositiveNonzeroInteger(u64);
+use std::num::ParseIntError;
 
-#[derive(PartialEq, Debug)]
-enum CreationError {
-    Negative,
-    Zero,
+#[derive(Debug)]
+struct Purchase {
+    quantity: i32,
+    total_cost: i32,
 }
 
-impl PositiveNonzeroInteger {
-    fn new(value: i64) -> Result<PositiveNonzeroInteger, CreationError> {
-        Ok(PositiveNonzeroInteger(value as u64))
-    }
+fn total_cost(item_quantity: &str) -> Result<Purchase, ParseIntError> {
+    let tokens_per_item = 5;
+    let processing_fee = 1;
+    let quantity = item_quantity.parse::<i32>()?;
+    Ok(Purchase {
+        quantity,
+        total_cost: quantity * tokens_per_item + processing_fee,
+    })
 }
 
-#[test]
-fn test_creation() {
-    assert!(PositiveNonzeroInteger::new(10).is_ok());
-    assert_eq!(
-        Err(CreationError::Negative),
-        PositiveNonzeroInteger::new(-10)
-    );
-    assert_eq!(Err(CreationError::Zero), PositiveNonzeroInteger::new(0));
+fn main() {
+    let purchase = total_cost("10");
+    println!("{:?}", purchase);
 }
+
