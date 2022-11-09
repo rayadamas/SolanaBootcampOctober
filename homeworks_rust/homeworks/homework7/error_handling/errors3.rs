@@ -8,26 +8,29 @@
 
 
 use std::num::ParseIntError;
+use std::process::ExitCode;
 
-#[derive(Debug)]
-struct Purchase {
-    quantity: i32,
-    total_cost: i32,
+fn main() -> Result<ExitCode, ParseIntError> {
+    let mut tokens = 100;
+    let pretend_user_input = "8";
+
+    let cost = total_cost(pretend_user_input)?;
+
+    if cost > tokens {
+        println!("You can't afford that many!");
+    } else {
+        tokens -= cost;
+        println!("You now have {} tokens.", tokens);
+    }
+    Ok(ExitCode::SUCCESS)
 }
 
-fn total_cost(item_quantity: &str) -> Result<Purchase, ParseIntError> {
-    let tokens_per_item = 5;
+pub fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     let processing_fee = 1;
-    let quantity = item_quantity.parse::<i32>()?;
-    Ok(Purchase {
-        quantity,
-        total_cost: quantity * tokens_per_item + processing_fee,
-    })
-}
+    let cost_per_item = 5;
+    let qty = item_quantity.parse::<i32>()?;
 
-fn main() {
-    let purchase = total_cost("10");
-    println!("{:?}", purchase);
+    Ok(qty * cost_per_item + processing_fee)
 }
 
 // fn main() {

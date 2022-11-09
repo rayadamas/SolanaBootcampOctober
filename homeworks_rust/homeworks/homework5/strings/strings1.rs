@@ -5,10 +5,20 @@
 // I AM NOT DONE
 
 fn main() {
-    let answer = current_favorite_course();
-    println!("My course is {}", answer);
+    let word = String::from("green"); // Try not changing this line :)
+    let word = first_word(&word);
+    println!("The first word is: {}", word);
 }
 
-fn current_favorite_course() -> String {
-    "Solana"
+fn first_word(s: &String) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
 }
+

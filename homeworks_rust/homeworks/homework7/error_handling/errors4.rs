@@ -22,7 +22,10 @@ fn total_cost(item_quantity: &str) -> Result<Purchase, ParseIntError> {
 }
 
 fn main() {
-    let purchase = total_cost("10");
-    println!("{:?}", purchase);
+    let result = "Error: 404".parse::<i32>();
+    match result {
+        Ok(v) => println!("The answer is: {}", v),
+        Err(e) => println!("Error: {}", e),
+    }
 }
 

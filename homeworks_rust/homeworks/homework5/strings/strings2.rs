@@ -6,13 +6,27 @@
 
 fn main() {
     let word = String::from("green"); // Try not changing this line :)
-    if is_a_color_word(word) {
-        println!("That is a color word I know!");
-    } else {
-        println!("That is not a color word I know.");
-    }
+    println!("The first word is: {}", word);
+    let my_string_literal = "hello world";
 }
 
 fn is_a_color_word(attempt: &str) -> bool {
-    attempt == "green" || attempt == "blue" || attempt == "red"
+    match attempt {
+        "red" => true,
+        "green" => true,
+        "blue" => true,
+        _ => false,
+    }
+}
+
+fn first_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
 }

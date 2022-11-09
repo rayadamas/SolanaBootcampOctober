@@ -6,6 +6,17 @@
 #[derive(Debug)]
 enum Message {
     // TODO: define the different variants used below
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+
+fn main() {
+    println!("{:?}", Message::Quit);
+    println!("{:?}", Message::Move { x: 3, y: 4 });
+    println!("{:?}", Message::Write(String::from("hello")));
+    println!("{:?}", Message::ChangeColor(0, 160, 255));
 }
 
 impl Message {
@@ -14,15 +25,15 @@ impl Message {
     }
 }
 
-fn main() {
-    let messages = [
-        Message::Move { x: 10, y: 30 },
-        Message::Echo(String::from("hello world")),
-        Message::ChangeColor(200, 255, 255),
-        Message::Quit,
-    ];
+// fn main() {
+//     let messages = [
+//         Message::Move { x: 10, y: 30 },
+//         Message::Echo(String::from("hello world")),
+//         Message::ChangeColor(200, 255, 255),
+//         Message::Quit,
+//     ];
 
-    for message in &messages {
-        message.call();
-    }
-}
+//     for message in &messages {
+//         message.call();
+//     }
+// }

@@ -10,12 +10,18 @@
 
 // I AM NOT DONE
 
+// This is the trait you need to implement.
 trait AppendBar {
     fn append_bar(self) -> Self;
 }
 
+// This is the struct you need to implement the trait for.
+struct String;
+
 impl AppendBar for String {
-    //Add your code here
+    fn append_bar(self) -> Self {
+        format!("{}Bar", self)
+    }
 }
 
 fn main() {

@@ -9,6 +9,7 @@ struct Point {
 }
 
 fn main() {
+    let x: Option<Point> = None;
     let y: Option<Point> = Some(Point { x: 100, y: 200 });
 
     match y {
@@ -16,4 +17,5 @@ fn main() {
         _ => println!("no match"),
     }
     y; // Fix without deleting this line.
+
 }
