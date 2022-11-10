@@ -9,4 +9,7 @@ members = [
 	"example2-counter/rust",
 	"example2-counter/rust",
 	"example3-multifunc",
+	"example4-cpi/rust",
+	"example5-compute/rust",
+	"example6-pda/rust",	
 ]
