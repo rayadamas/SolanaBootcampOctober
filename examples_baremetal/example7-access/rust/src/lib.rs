@@ -36,6 +36,9 @@ pub fn process_instruction(
     // Create an iterator for the accounts
     // use the iterator to get an account
     // call this variable  access_account
+    
+    let access_account = next_account_info(accounts.iter())?;
+
 
 
 
@@ -51,6 +54,12 @@ pub fn process_instruction(
     // and return an appropriate error message
     // otherwise write a message to console to indicate success
 
+    if access_account.owner != program_id {
+        msg!("[lib] Provided account is not owned by the program");
+        return Err(ProgramError::InvalidAccountData);
+    } else {
+        msg!("[lib] Provided account is owned by the program");
+    }
 
     // Create a struct that's easy to interact with programatcially from access account data
     let mut access_struct =
@@ -83,6 +92,7 @@ pub fn process_instruction(
             // Derive the PDA from: caller_account, seed, program ID
             // call this variable derived_pda        
         
+            let derived_pda = Pubkey::create_program_address(&[&seed.as_bytes(), &[1]], program_id).unwrap();
             // Compare to see if derived account is the same as the provided access account key
             if derived_pda == *access_account.key {
                 access_granted = true;

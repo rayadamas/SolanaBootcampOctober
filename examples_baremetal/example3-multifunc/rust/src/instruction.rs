@@ -30,7 +30,11 @@ impl Instruction {
         // otherwise return an error : 
         //  Err(ProgramError::BorshIoError("Invalid function flag".to_string(),))
 
-
+        match function_flag {
+            0 => Ok(Instruction::FunctionA),
+            1 => Ok(Instruction::FunctionB),
+            _ => Err(ProgramError::BorshIoError("Invalid function flag".to_string())),
+        }
 
 
     }

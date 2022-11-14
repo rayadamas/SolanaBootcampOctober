@@ -18,5 +18,12 @@ impl Processor {
         // e.g. if Instruction::FunctionA , then call function_a
         // return an appropriate ProgramResult
 
+        match instruction {
+            Instruction::FunctionA => function_a(),
+            Instruction::FunctionB => function_b(),
+        }
+
+        Ok(())
+        
     }
 }
